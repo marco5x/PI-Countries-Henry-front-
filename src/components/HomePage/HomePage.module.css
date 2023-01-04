@@ -1,0 +1,12 @@
+.homeContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px 10px 0px;
+    font-family: cursive;
+    /* background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ef9dd3dc-f8fc-4f7e-9c67-f2fae535730e/d4lpe17-902278df-b791-494f-ab9f-41f100b22698.jpg/v1/fill/w_800,h_500,q_75,strp/world_map_by_sony_viao-d4lpe17.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwic3ViIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl0sIm9iaiI6W1t7InBhdGgiOiIvZi9lZjlkZDNkYy1mOGZjLTRmN2UtOWM2Ny1mMmZhZTUzNTczMGUvZDRscGUxNy05MDIyNzhkZi1iNzkxLTQ5NGYtYWI5Zi00MWYxMDBiMjI2OTguanBnIiwid2lkdGgiOiI8PTgwMCIsImhlaWdodCI6Ijw9NTAwIn1dXX0.tC4lMnP13PTdiTzX5EiFhN4ZllABKYVUxGdiubRBtJY');
+    background-color:lightblue;
+    background-size: cover;
+    min-height: 100vh;*/
+}

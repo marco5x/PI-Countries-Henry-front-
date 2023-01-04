@@ -1,0 +1,65 @@
+.landingContainer{
+    display: flex;
+    width: auto;
+    /* background-image: url("http://brownandco.co/img/home/bco-homepage-map.gif"); */
+    /* background-image: url('https://media.kasperskydaily.com/wp-content/uploads/sites/92/2015/11/06023813/tinternet-map-twitter-sunrise.gif'); */
+    /* background-image: url("http://2.bp.blogspot.com/-sIaAOjBJgys/T9A78w96loI/AAAAAAAAAP0/zu1xltRr6WA/s1600/mapa-mundi.gif"); */
+    background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6d91f584-7435-4eee-bbde-eec0ac6a87ff/dam6sxk-4d260ea8-bc0c-4d2d-be12-018de82c7448.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwic3ViIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsImF1ZCI6WyJ1cm46c2VydmljZTpmaWxlLmRvd25sb2FkIl0sIm9iaiI6W1t7InBhdGgiOiIvZi82ZDkxZjU4NC03NDM1LTRlZWUtYmJkZS1lZWMwYWM2YTg3ZmYvZGFtNnN4ay00ZDI2MGVhOC1iYzBjLTRkMmQtYmUxMi0wMThkZTgyYzc0NDguZ2lmIn1dXX0.8PBG06Lry0wuvp5bgVQGH16efLdtDNX4QwP5vcvjbxg");
+    /* background-image: url("https://i1.wp.com/codemyui.com/wp-content/uploads/2016/07/flat-word-map-with-location-ping.gif?fit=880%2C440&ssl=1"); */
+    /* background-image: url("https://www.matichon.co.th/wp-content/uploads/2018/04/GFDR-2017-cover-animated.gif"); */
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+}
+
+.msgContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: cursive;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 10% ;
+    backdrop-filter: blur(4px);
+    border: rgba(255, 255, 255, 0.63) 2px solid;
+    border-radius: 15px;
+}
+
+.msgContainer h1 {
+    display: flex;
+    justify-content:flex-start;
+    text-align:center;
+    color: lightcyan;
+    font-size: 45px;
+  }
+
+.msg {
+    font-family: cursive;
+    font-size: 20px;
+    color: lightcyan;
+}
+
+.button {
+    display: flex;
+    text-decoration: none;
+    color: lightcyan;
+    background-color: #177ee6;
+    padding: 10px;
+    border-radius: 7%;
+    font-size: 18px;
+}
+.button:hover {
+    display: flex;
+    text-decoration: none;
+    color: lightcyan;
+    background-color: #55aaff;
+    padding: 10px;
+    border-radius: 7%;
+    font-size: 18px;
+    cursor: pointer;
+}
