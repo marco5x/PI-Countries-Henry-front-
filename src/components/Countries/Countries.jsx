@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import style from './Countries.module.css';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Country from '../Country/Country'
-//import { getCountries } from '../../Actions/index'
+import { getCountries } from '../../features/country/countrySlice'
 
-function Countries(props) {
+function Countries() {
+	const dispatch = useDispatch()
+	const countriesDB = useSelector((state) => state.country.countries)
+
 	const [numberPage, setnumberPage] = useState(1);
 	const tenCountry = 10;
 	const conteoFinal = numberPage * tenCountry;
 	const conteoInicial = conteoFinal - tenCountry;
 
-	const countries = props.countries.slice(conteoInicial, conteoFinal)	//copia del array
+	const countries = countriesDB	//copia del array
 
 	useEffect(() => {
-		// props.getCountries()
+		dispatch(getCountries())
 	}, [])
-	if (numberPage < 1) setnumberPage(1);
-	if (numberPage > 25) setnumberPage(25);
+
+	if (numberPage < 1) setnumberPage(25);
+	if (numberPage > 25) setnumberPage(1);
 
 	return (
 		<>
 		<div className={style.container}>
-			{countries ? countries.map(c =>
+			{countries ? countries.slice(conteoInicial, conteoFinal).map(c =>
 				<div>
 					<Country
 					    key={c.id}
@@ -44,17 +48,4 @@ function Countries(props) {
 	)
 }
 
-
-function mapStateToProps(state) {
-	return {
-		countries: state.countries
-	}
-}
-
-function mapDispatchToProps(dispatch) {
-	return {
-		// getCountries: () => dispatch(getCountries()),
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps) (Countries)
+export default Countries

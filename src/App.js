@@ -1,8 +1,8 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
-import { LandingPage } from "./components/LandingPage/LandingPage";
-import { HomePage } from './components/HomePage/HomePage';
-import { FormActivity } from './components/FormActivity/FormActivity';
+import { LandingPage } from "./pages/LandingPage/LandingPage";
+import { HomePage } from './pages/HomePage/HomePage';
+import { FormActivity } from './pages/FormActivity/FormActivity';
 import { CountryDetail } from './components/CountryDetail/CountryDetail';
 import { Layout } from './components/Layout/Layout';
 import { ErrorPage } from './components/Error/ErrorPage';
