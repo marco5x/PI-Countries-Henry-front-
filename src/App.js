@@ -5,9 +5,7 @@ import { HomePage } from './pages/HomePage/HomePage';
 import { FormActivity } from './pages/FormActivity/FormActivity';
 import { CountryDetail } from './components/CountryDetail/CountryDetail';
 import { Layout } from './components/Layout/Layout';
-import { ErrorPage } from './components/Error/ErrorPage';
-
-
+import { ErrorPage } from './pages/Error/ErrorPage';
 
 function App() {    
     return (
@@ -15,7 +13,7 @@ function App() {
             <Route exact path='/' element={<LandingPage />} />
             <Route path='/countries' element={<Layout />}>
                 <Route index element={<HomePage />} />
-                <Route path=':id' element = {<CountryDetail id="ARG" />} />
+                <Route path=':id' element = {<CountryDetail />} />
             </Route>
             <Route path='/activities' element={<FormActivity />} />
             
