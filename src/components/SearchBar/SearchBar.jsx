@@ -2,13 +2,9 @@ import React, { useState } from 'react';
 import style from './SearchBar.module.css'
 import Country from '../Country/Country'
 import { useGetCountryByNameQuery } from "../../api/apiSlice"
-import { useSelector} from "react-redux"
 
 const SearchBar = () => {
 	const [input, setInput] = useState({name: ''})
-
-	const country = useSelector((state) => state.api.queries)
-	console.log(country)
 
 	const {data: countries, isLoading, error, isError, } = useGetCountryByNameQuery(input.name)
 
@@ -23,21 +19,21 @@ const SearchBar = () => {
 	else if (isError) return <div>Error: {error.message}</div>;
 
 	return (
-		< >
+		<>
 			<form>
 				<input className={style.input} type='text' placeholder='Search Country...' name='name'	value={input.name}	onChange={(e) => handleChange(e)}/>
 				{/* <button type='submit' > 🔎 </button> */}
 			</form>
-			{/* {countries ? countries.map(c =>
-				<div>
-					<Country
+			{!input.name ? "" : countries.map(c =>
+				<div >
+				<Country
 					    key={c.id}
 						name={c.name}
 						flag={!c.flag? "not found image" : c.flag}
 						region={c.region}
 						id={c.id} />
 				</div>
-			) : ("")} */}
+			) }
 		</>
 	)
 }
