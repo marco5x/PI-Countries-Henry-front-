@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import Nav from '../Components/NavBar/NavBar';
+import Nav from '../components/NavBar/NavBar';
 
 configure({ adapter: new Adapter() });
 

@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { sortAlphabetically} from "../utils/utils"
 
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001" }),
-  tagTypes: ["Countries"],
+  tagTypes: ["Countries", "Activities"],
   endpoints: (builder) => ({
     getCountries: builder.query({
       query: () => "countries",
@@ -14,6 +15,23 @@ export const apiSlice = createApi({
     }),
     getCountryByName: builder.query({
         query: (name) => `countries/name?name=${name}`,
+    }),
+    getSortAToZ: builder.query({
+      query: () => "countries",
+      transformResponse: (response) => response.sort((a, b) => sortAlphabetically(a,b)),
+    }),
+    getSortZToA: builder.query({
+      query: () => "countries",
+      transformResponse: (response) => response.sort((a, b) => sortAlphabetically(b,a)),
+    }),
+    getSortPopulationAsc: builder.query({
+      query: () => "countries",
+      transformResponse: (response) => response.sort((a, b) => b.population - a.population),
+      
+    }),
+    getSortPopulationDesc: builder.query({
+      query: () => "countries",
+      transformResponse: (response) => response.sort((a, b) => a.population - b.population),
     }),
     createTask: builder.mutation({
       query: (newTask) => ({
@@ -44,5 +62,9 @@ export const apiSlice = createApi({
 export const {
   useGetCountriesQuery,
   useGetCountryDetailQuery,
-  useGetCountryByNameQuery
+  useGetCountryByNameQuery,
+  useGetSortZToAQuery,
+  useGetSortAToZQuery,
+  useGetSortPopulationAscQuery,
+  useGetSortPopulationDescQuery
 } = apiSlice;

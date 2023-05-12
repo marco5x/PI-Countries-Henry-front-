@@ -3,7 +3,6 @@ import style from './Countries.module.css';
 import Country from '../Country/Country'
 import { useGetCountriesQuery } from "../../api/apiSlice"
 
-
 function Countries() {
 	const [numberPage, setnumberPage] = useState(1);
 	const tenCountry = 10;

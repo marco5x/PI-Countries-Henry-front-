@@ -4,17 +4,21 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { Provider} from "react-redux"
 import { ApiProvider } from '@reduxjs/toolkit/query/react'
 import { apiSlice } from "./api/apiSlice";
+import {store} from "./app/store"
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <ApiProvider api={apiSlice}>
+        <Provider store={store}>
         <BrowserRouter>
             <App />
         </BrowserRouter>
+        </Provider>
         </ApiProvider>
     </React.StrictMode>
 );

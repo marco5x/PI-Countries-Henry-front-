@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
 import style from "./Ordered.module.css";
-import { connect } from "react-redux";
-import {
-    getCountries,
-    sortAToZ,
-    sortZToA,
-    sortPopulationAsc,
-    sortPopulationDesc,
-} from "../../Actions/index";////Ojjjooooo
+import { useGetCountriesQuery,
+     useGetSortAToZQuery,
+     useGetSortZToAQuery,
+     useGetSortPopulationAscQuery,
+     useGetSortPopulationDescQuery
+     } from "../../api/apiSlice"
 
-const Ordered = ({
-    getCountries,
-    sortAToZ,
-    sortZToA,
-    sortPopulationAsc,
-    sortPopulationDesc,
-}) => {
+
+const Ordered = () => {
+
     const [order, setOrder] = useState("");
 
-    useEffect(() => {
-        if (order === "all") getCountries();
-        else if (order === "a-z") sortAToZ();
-        else if (order === "z-a") sortZToA();
-        else if (order === "populationAsc") sortPopulationAsc();
-        else if (order === "populationDesc") sortPopulationDesc();
-    }, [order]);
+    const {data: getCountries,  } = useGetCountriesQuery()
+    const {data: sortAToZ,  } = useGetSortAToZQuery()
+    const {data: sortZToA,  } = useGetSortZToAQuery()
+    const {data: sortPopulationAsc,  } = useGetSortPopulationAscQuery()
+    const {data: sortPopulationDesc,  } = useGetSortPopulationDescQuery()
+
+
+     useEffect(() => {
+         if (order === "all") return getCountries;
+         else if (order === "a-z") return sortAToZ;
+         else if (order === "z-a") return sortZToA;
+         else if (order === "populationAsc") return sortPopulationAsc;
+         else if (order === "populationDesc") return sortPopulationDesc;
+    }, [order, getCountries, sortAToZ, sortZToA, sortPopulationAsc, sortPopulationDesc ]);
 
     return (
         <div>
@@ -43,19 +44,4 @@ const Ordered = ({
     );
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getCountries: () => dispatch(getCountries()),
-        sortAToZ: () => dispatch(sortAToZ()),
-        sortZToA: () => dispatch(sortZToA()),
-        sortPopulationAsc: () => dispatch(sortPopulationAsc()),
-        sortPopulationDesc: () => dispatch(sortPopulationDesc()),
-    };
-};
-const mapStateToProps = (state) => {
-    return {
-        countries: state.countries,
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Ordered);
+export default Ordered;
