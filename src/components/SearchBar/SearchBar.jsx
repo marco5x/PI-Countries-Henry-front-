@@ -1,43 +1,45 @@
 import React, { useState } from 'react';
 import style from './SearchBar.module.css'
-import { connect } from 'react-redux';////////////////
-import { searchCountry } from '../../Actions/index'/////OOOjjjjJo
+import Country from '../Country/Country'
+import { useGetCountryByNameQuery } from "../../api/apiSlice"
+import { useSelector} from "react-redux"
 
-
-const SearchBar = (props) => {
+const SearchBar = () => {
 	const [input, setInput] = useState({name: ''})
 
+	const country = useSelector((state) => state.api.queries)
+	console.log(country)
+
+	const {data: countries, isLoading, error, isError, } = useGetCountryByNameQuery(input.name)
+
 	function handleChange(e) {
-		e.preventDefault()	
+		e.preventDefault()
 		setInput({
 			name: e.target.value
 		})
 	};
 
-	function handleSubmit(e) {
-		e.preventDefault()
-		if (input.name) {
-			props.searchCountry(input.name)
-		} else if (!input.name){
-			alert('❌ Enter a name of a country')
-		} 
-		setInput({name:''})
-	}
+	if (isLoading) return <div>❌ Enter a name of a country</div>;  
+	else if (isError) return <div>Error: {error.message}</div>;
 
 	return (
-		<div >
-			<form onSubmit={(e) => handleSubmit(e)}>
+		< >
+			<form>
 				<input className={style.input} type='text' placeholder='Search Country...' name='name'	value={input.name}	onChange={(e) => handleChange(e)}/>
 				{/* <button type='submit' > 🔎 </button> */}
 			</form>
-		</div>
+			{/* {countries ? countries.map(c =>
+				<div>
+					<Country
+					    key={c.id}
+						name={c.name}
+						flag={!c.flag? "not found image" : c.flag}
+						region={c.region}
+						id={c.id} />
+				</div>
+			) : ("")} */}
+		</>
 	)
 }
 
-function mapDispatchToProps(dispatch) {
-	return {
-		searchCountry: name => dispatch(searchCountry(name))
-	};
-}
-
-export default connect(null, mapDispatchToProps)(SearchBar)
+export default SearchBar

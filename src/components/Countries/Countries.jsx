@@ -1,26 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import style from './Countries.module.css';
-import { useDispatch, useSelector } from 'react-redux';
 import Country from '../Country/Country'
-import { getCountries } from '../../features/country/countrySlice'
+import { useGetCountriesQuery } from "../../api/apiSlice"
+
 
 function Countries() {
-	const dispatch = useDispatch()
-	const countriesDB = useSelector((state) => state.country.countries)
-
 	const [numberPage, setnumberPage] = useState(1);
 	const tenCountry = 10;
 	const conteoFinal = numberPage * tenCountry;
 	const conteoInicial = conteoFinal - tenCountry;
 
-	const countries = countriesDB	//copia del array
-
-	useEffect(() => {
-		dispatch(getCountries())
-	}, [])
-
 	if (numberPage < 1) setnumberPage(25);
 	if (numberPage > 25) setnumberPage(1);
+
+	const {data: countries, isLoading, error, isError, } = useGetCountriesQuery()
+	
+	if (isLoading) return <div>Loading...</div>;  
+	else if (isError) return <div>Error: {error.message}</div>;
 
 	return (
 		<>
@@ -30,7 +26,7 @@ function Countries() {
 					<Country
 					    key={c.id}
 						name={c.name}
-						flag={!c.flag? "Cargando" : c.flag}
+						flag={!c.flag? "not found image" : c.flag}
 						region={c.region}
 						id={c.id} />
 				</div>) : (<h2>'The country does not exist 😱'</h2>)}
