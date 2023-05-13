@@ -4,7 +4,3 @@ export const sortAlphabetically = (x, y) => {
     if(y.name < x.name) return 1
     return 0
 }
-
-export const sortPopulation = (x, y) => {
-    return x.population - y.population
-}

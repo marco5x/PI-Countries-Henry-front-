@@ -34,7 +34,7 @@ export const FormActivity = () => {
                 countryId: Array.from(
                     e.target.selectedOptions,
                     (option) => option.value
-                ), //crea una nueva instancia de ‎‎Array‎‎ copiada superficialmente a partir de un objeto similar a una matriz o iterable.‎
+                ),
             });
         }
     };
@@ -60,7 +60,11 @@ export const FormActivity = () => {
                 </Link>
             </div>
             <div>
-                <form className={style.form} onSubmit={handleSubmit}>
+                <form className={(activities.season === "Summer")? style.summer : 
+                 (activities.season === "Autumn")? style.autumn:
+                 (activities.season === "Winter")? style.winter:
+                 (activities.season === "Spring")? style.spring : style.form}
+                onSubmit={handleSubmit}>
                     <h2>Create a new activity</h2>
                     <br />
                     <div>
