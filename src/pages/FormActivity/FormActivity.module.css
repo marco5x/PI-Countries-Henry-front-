@@ -51,7 +51,7 @@
 .multiSelect {
     margin: 4%;
     width: auto;
-    height: 120px;
+    height: 10rem;
     color: lightcyan;
     font-family: cursive;
     border-radius: 5px;
@@ -59,7 +59,7 @@
     border: 0;
 }
 .multiSelect:focus {
-    height: 220px;
+    height: 10rem;
     background-color: rgba(187, 50, 68, 0.651);
 }
 

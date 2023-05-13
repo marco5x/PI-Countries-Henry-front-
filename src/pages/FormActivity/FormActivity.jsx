@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./FormActivity.module.css";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-//import { getCountries, postAct } from "../../Actions/index"; ///OJOOOOOO
+import { useCreateActivitesMutation, useGetCountriesQuery} from "../../api/apiSlice"
 
 export const FormActivity = () => {
-    const countries = useSelector((state) => state.countries);
-    const dispatch = useDispatch();
+    
+    const {data } = useGetCountriesQuery()
+    const countries = data
 
-    useEffect(() => {
-        // dispatch(getCountries());
-    }, [dispatch]);
-
-    const [submit, setSubmit] = useState(false);
     const [activities, setActivities] = useState({
         name: "",
         difficulty: "",
@@ -20,16 +15,15 @@ export const FormActivity = () => {
         season: "",
         countryId: [],
     });
+    const [createActivities] = useCreateActivitesMutation();
 
     const handleActivity = (e) => {
-        setSubmit(false);
         if (e.target.name !== "countryId" && e.target.name !== "difficulty") {
             setActivities({
                 ...activities,
                 [e.target.name]: e.target.value,
             });
         } else if (e.target.name === "difficulty") {
-            //console.log(activities.difficulty)
             setActivities({
                 ...activities,
                 [e.target.name]: e.target.value,
@@ -47,8 +41,7 @@ export const FormActivity = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSubmit(true);
-        // dispatch(postAct(activities));
+        createActivities(activities)//uso del hook de RTK
         alert("✅ Activity Created");
         setActivities({
             name: "",
@@ -128,9 +121,8 @@ export const FormActivity = () => {
                         })}
                     </select>
                     <div>
-                        <input className={style.button} type="submit" />
+                        <button className={style.button} type="submit" >Create </button>
                     </div>
-                    {console.log(activities)}
                 </form>
             </div>
         </div>

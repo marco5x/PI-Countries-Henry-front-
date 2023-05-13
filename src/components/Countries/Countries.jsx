@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import style from './Countries.module.css';
 import Country from '../Country/Country'
-import { useGetCountriesQuery } from "../../api/apiSlice"
 
-function Countries() {
+function Countries(props) {
 	const [numberPage, setnumberPage] = useState(1);
 	const tenCountry = 10;
 	const conteoFinal = numberPage * tenCountry;
@@ -12,10 +11,7 @@ function Countries() {
 	if (numberPage < 1) setnumberPage(25);
 	if (numberPage > 25) setnumberPage(1);
 
-	const {data: countries, isLoading, error, isError, } = useGetCountriesQuery()
-	
-	if (isLoading) return <div>Loading...</div>;  
-	else if (isError) return <div>Error: {error.message}</div>;
+	let countries = props.datos
 
 	return (
 		<>

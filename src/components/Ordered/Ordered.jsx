@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./Ordered.module.css";
+import Countries from '../Countries/Countries'
 import { useGetCountriesQuery,
      useGetSortAToZQuery,
      useGetSortZToAQuery,
@@ -17,18 +18,16 @@ const Ordered = () => {
     const {data: sortZToA,  } = useGetSortZToAQuery()
     const {data: sortPopulationAsc,  } = useGetSortPopulationAscQuery()
     const {data: sortPopulationDesc,  } = useGetSortPopulationDescQuery()
-
-
-     useEffect(() => {
-         if (order === "all") return getCountries;
-         else if (order === "a-z") return sortAToZ;
-         else if (order === "z-a") return sortZToA;
-         else if (order === "populationAsc") return sortPopulationAsc;
-         else if (order === "populationDesc") return sortPopulationDesc;
-    }, [order, getCountries, sortAToZ, sortZToA, sortPopulationAsc, sortPopulationDesc ]);
-
+   
+    let datos = getCountries
+    if (order === "all") datos = getCountries;
+    else if (order === "a-z") datos = sortAToZ;
+    else if (order === "z-a") datos = sortZToA;
+    else if (order === "populationAsc") datos = sortPopulationAsc;
+    else if (order === "populationDesc") datos = sortPopulationDesc;
+        
     return (
-        <div>
+        <div className={style.orderContainer}>
             <h5>Order by</h5>
             <select
                 className={style.selectOrder}
@@ -40,6 +39,7 @@ const Ordered = () => {
                 <option value="populationAsc">👆🏼 Population</option>
                 <option value="populationDesc">👇🏼 Population</option>
             </select>
+            <Countries datos={datos}/>
         </div>
     );
 };

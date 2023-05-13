@@ -1,5 +1,11 @@
+.orderContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .selectOrder {
-    margin-left: auto;
     color: lightcyan;
     font-family: cursive;
     border-radius: 50px;

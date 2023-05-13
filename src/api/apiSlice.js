@@ -33,13 +33,16 @@ export const apiSlice = createApi({
       query: () => "countries",
       transformResponse: (response) => response.sort((a, b) => a.population - b.population),
     }),
-    createTask: builder.mutation({
+    getActivites: builder.query({
+      query: () => "activities",
+      providesTags: ["Activities"],
+    }),
+    createActivites: builder.mutation({
       query: (newTask) => ({
-        url: "/tasks",
+        url: "/activities",
         method: "POST",
         body: newTask,
       }),
-      invalidatesTags: ["Tasks"],
     }),
     updateTask: builder.mutation({
       query: (updatedTask) => ({
@@ -66,5 +69,6 @@ export const {
   useGetSortZToAQuery,
   useGetSortAToZQuery,
   useGetSortPopulationAscQuery,
-  useGetSortPopulationDescQuery
+  useGetSortPopulationDescQuery,
+  useCreateActivitesMutation
 } = apiSlice;
