@@ -11,6 +11,7 @@ export const NavBar = () => {
             <h1> APP COUNTRIES - </h1>
             <h3>"Let's take care of our home 🏠 , called Earth 🌎."</h3> 
             <div>
+            <NavLink className={style.buttonLink} to='/activities/all' >Activities</NavLink>
             <NavLink className={style.buttonLink} to='/activities' >Create Activity</NavLink>
             </div>           
         </div>

@@ -25,7 +25,7 @@ const SearchBar = () => {
 				{/* <button type='submit' > 🔎 </button> */}
 			</form>
 			{!input.name ? "" : countries.map(c =>
-				<div >
+				<div>
 				<Country
 					    key={c.id}
 						name={c.name}

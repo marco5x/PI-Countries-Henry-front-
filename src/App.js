@@ -6,6 +6,7 @@ import { FormActivity } from './pages/FormActivity/FormActivity';
 import { CountryDetail } from './components/CountryDetail/CountryDetail';
 import { Layout } from './components/Layout/Layout';
 import { ErrorPage } from './pages/Error/ErrorPage';
+import Activities from './components/Activities/Activities';
 
 function App() {    
     return (
@@ -15,8 +16,10 @@ function App() {
                 <Route index element={<HomePage />} />
                 <Route path=':id' element = {<CountryDetail />} />
             </Route>
-            <Route path='/activities' element={<FormActivity />} />
-            
+            <Route path='/activities' element={<Layout />} >
+            <Route index element={<FormActivity />} />
+            <Route path='all' element={<Activities />} />
+            </Route>
             <Route path='*' element={<ErrorPage/>} />   
         </Routes>
     );

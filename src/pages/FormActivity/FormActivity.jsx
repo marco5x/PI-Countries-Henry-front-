@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import style from "./FormActivity.module.css";
-import { Link } from "react-router-dom";
-import { useCreateActivitesMutation, useGetCountriesQuery} from "../../api/apiSlice"
+import { Link, NavLink } from "react-router-dom";
+import { useCreateActivitesMutation, useGetSortAToZQuery} from "../../api/apiSlice"
 
 export const FormActivity = () => {
     
-    const {data } = useGetCountriesQuery()
+    const {data } = useGetSortAToZQuery()
     const countries = data
 
     const [activities, setActivities] = useState({
@@ -128,6 +128,9 @@ export const FormActivity = () => {
                         <button className={style.button} type="submit" >Create </button>
                     </div>
                 </form>
+            </div>
+            <div>
+            <NavLink className={style.buttonLink} to='/activities/all' > ALL ACTIVITIES</NavLink>
             </div>
         </div>
     );

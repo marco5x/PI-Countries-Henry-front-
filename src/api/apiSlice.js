@@ -34,25 +34,25 @@ export const apiSlice = createApi({
       transformResponse: (response) => response.sort((a, b) => a.population - b.population),
     }),
     getActivites: builder.query({
-      query: () => "activities",
+      query: () => "activities/all",
       providesTags: ["Activities"],
     }),
     createActivites: builder.mutation({
-      query: (newTask) => ({
+      query: (newActivity) => ({
         url: "/activities",
         method: "POST",
-        body: newTask,
+        body: newActivity,
       }),
     }),
-    updateTask: builder.mutation({
-      query: (updatedTask) => ({
-        url: `/activities/${updatedTask.id}`,
+    updateActivity: builder.mutation({
+      query: (updatedActivity) => ({
+        url: `/activities/${updatedActivity.id}`,
         method: "PUT",
-        body: updatedTask,
+        body: updatedActivity,
       }),
       invalidatesTags: ["Activities"],
     }),
-    deleteActivities: builder.mutation({
+    deleteActivity: builder.mutation({
       query: (activityId) => ({
         url: `/activities/${activityId}`,
         method: "DELETE",
@@ -70,5 +70,8 @@ export const {
   useGetSortAToZQuery,
   useGetSortPopulationAscQuery,
   useGetSortPopulationDescQuery,
-  useCreateActivitesMutation
+  useGetActivitesQuery,
+  useCreateActivitesMutation,
+  useUpdateActivityMutation,
+  useDeleteActivityMutation
 } = apiSlice;
