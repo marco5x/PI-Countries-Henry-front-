@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import style from './Activities.module.css';
-import { useGetActivitesQuery, useUpdateActivityMutation, useDeleteActivityMutation } from "../../api/apiSlice"
+import { FormUpdate } from '../../pages/FormUpdate/FormUpdate';
+import { useGetActivitesQuery, useDeleteActivityMutation } from "../../api/apiSlice"
+
 
 function Activities() {
+    const modalEdit = document.getElementById("modal");
+
+    const [showModal, setShowModal] = useState(false);
+    const [data, setData] = useState(0)
     const { data: activities, isLoading, isError, error } = useGetActivitesQuery()
-    const [updateActivity] = useUpdateActivityMutation();
     const [deleteActivity] = useDeleteActivityMutation();
 
     if (isLoading) return <div>Cargando...</div>;
     else if (isError) return <div>Error: {error.message}</div>;
+
+    let datos = (id) => {
+        setData(id)
+        setShowModal(!showModal)
+    }
 
     return (
         <div className={style.container}>
@@ -33,19 +44,32 @@ function Activities() {
                             <td>{act.season}</td>
                             <td>{act.countries.map(c => c.name)}</td>
                             <td>
-                                <input type="button" className={style.button}  value="Editar"
-                                onChange={(e) => {
-                                    updateActivity({ ...act});
-                                  }}/>
+                                <button className={style.button} type="button"
+                                    onClick={() => datos(act.id)}
+                                >Edit
+                                </button>
                             </td>
                             <td>
-                                <input className={style.button} type="button" value="🗑" 
-                                onClick={() => { deleteActivity(act.id)}}/>
+                                <input className={style.button} type="button" value="🗑"
+                                    onClick={() => {
+                                        if (window.confirm("Confirm delete activity"))
+                                            deleteActivity(act.id)
+                                    }} />
                             </td>
                         </tr>
                     ) : <td colspan="7">No hay actividades turisticas, agrega una ahora...</td>}
                 </tbody>
             </table>
+            {showModal ? (createPortal(
+                    <div className={style.modal}>
+                        <div className={style.mod}>
+                            {/*//////////////////////*/}
+                            <button onClick={() => setShowModal(!showModal)} >❌</button>
+                            <FormUpdate id={data} />
+                            {/*/////////////*/}
+                        </div>
+                    </div>
+                , modalEdit)) : null}
         </div>
     )
 }

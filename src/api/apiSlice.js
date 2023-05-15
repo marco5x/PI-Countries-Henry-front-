@@ -43,6 +43,7 @@ export const apiSlice = createApi({
         method: "POST",
         body: newActivity,
       }),
+      invalidatesTags: ["Activities"],
     }),
     updateActivity: builder.mutation({
       query: (updatedActivity) => ({

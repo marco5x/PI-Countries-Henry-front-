@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export const ErrorPage = () => {
     return (
-        <div id="error-page">
+        <div id="error-page" style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
             <h1>Oops! 🤦🏻‍♂️</h1>
             <p>Sorry, an unexpected error has occurred. 🙁</p>
             <br />
