@@ -24,7 +24,7 @@ function Countries(props) {
 						flag={!c.flag? "not found image" : c.flag}
 						region={c.region}
 						id={c.id} />
-				</div>) : (<h2>'The country does not exist 😱'</h2>)}
+				</div>) : (<h2>Countries are not found 😱!!</h2>)}
 		</div>
 			<div className={style.buttonPagination}>
 				<div className={style.button}>

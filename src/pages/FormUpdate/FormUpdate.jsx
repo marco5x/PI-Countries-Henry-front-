@@ -2,15 +2,43 @@ import React, { useState } from 'react';
 import style from "./FormUpdate.module.css"
 import { useGetActivitesQuery, useUpdateActivityMutation } from "../../api/apiSlice"
 
-export const FormUpdate = ({id}) => {
-    const { data: activities } = useGetActivitesQuery();
-    
-    const [updateActivity] = useUpdateActivityMutation();
 
+export const FormUpdate = ({ id, mod, set }) => {
+    
+    const { data: activities } = useGetActivitesQuery();
+    const [updateActivity] = useUpdateActivityMutation();
+    const activity = activities.find(act => act.id === id)
+
+    const [activitie, setActivitie] = useState({
+        id: activity.id,
+        name: activity.name,
+        difficulty: activity.difficulty,
+        duration: activity.duration,
+        season: activity.season,
+    });
+
+    const handleActivity = (e) => {
+        setActivitie({
+            ...activitie,
+            [e.target.name]: e.target.value,
+        })   
+    };
+    
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        updateActivity(activitie)//uso del hook de RTK
+        alert("✅ Activity Updated");
+        set(!mod)
+    };
 
     return (
         <div>
-            <form className={""}>
+            <form className={(activitie.season === "Summer")? style.summer : 
+                 (activitie.season === "Autumn")? style.autumn:
+                 (activitie.season === "Winter")? style.winter:
+                 (activitie.season === "Spring")? style.spring : style.form}
+                  onSubmit={handleSubmit}>
                 <h2>Edit tourist activity</h2>
                 <br />
                 <div>
@@ -21,8 +49,8 @@ export const FormUpdate = ({id}) => {
                             autoComplete="off"
                             placeholder="Name activity..."
                             name="name"
-                            onChange={""}
-                            // value={act.name}
+                            onChange={handleActivity}
+                            value={activitie.name}
                         />
                     </div>
                     <div>
@@ -32,12 +60,12 @@ export const FormUpdate = ({id}) => {
                             autoComplete="off"
                             placeholder="Duration (in hours)"
                             name="duration"
-                            onChange={""}
-                            //value={act.duration}
+                            onChange={handleActivity}
+                            value={activitie.duration}
                         />
                     </div>
-                    <select className={style.select} name="difficulty" //value={act.difficulty} 
-                    onChange={""}>
+                    <select className={style.select} name="difficulty" value={activitie.difficulty} 
+                    onChange={handleActivity}>
                         <option>Difficulty level</option>
                         <option value="1">1 ⚪</option>
                         <option value="2">2 🟢</option>
@@ -45,8 +73,8 @@ export const FormUpdate = ({id}) => {
                         <option value="4">4 🟠</option>
                         <option value="5">5 🔴</option>
                     </select>
-                    <select className={style.select} name="season" //value={act.season}
-                     onChange={""}>
+                    <select className={style.select} name="season" value={activitie.season}
+                     onChange={handleActivity}>
                         <option>Seasson...</option>
                         <option className={style.op} value="Summer">
                             Summer 🌞
@@ -57,10 +85,9 @@ export const FormUpdate = ({id}) => {
                     </select>
                 </div>
                 <div>
-                    <button className={style.button} type="submit" >Save </button>
+                    <button className={style.button} type="submit">Save </button>
                 </div>
             </form>
-
         </div>
     )
 }

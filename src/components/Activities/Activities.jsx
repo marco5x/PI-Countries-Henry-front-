@@ -14,7 +14,7 @@ function Activities() {
     const [deleteActivity] = useDeleteActivityMutation();
 
     if (isLoading) return <div>Cargando...</div>;
-    else if (isError) return <div>Error: {error.message}</div>;
+    else if (isError) return <div>Error: {error.error}</div>;
 
     let datos = (id) => {
         setData(id)
@@ -63,10 +63,8 @@ function Activities() {
             {showModal ? (createPortal(
                     <div className={style.modal}>
                         <div className={style.mod}>
-                            {/*//////////////////////*/}
                             <button onClick={() => setShowModal(!showModal)} >❌</button>
-                            <FormUpdate id={data} />
-                            {/*/////////////*/}
+                            <FormUpdate id={data} mod={showModal} set={setShowModal} />
                         </div>
                     </div>
                 , modalEdit)) : null}
