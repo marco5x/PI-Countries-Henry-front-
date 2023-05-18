@@ -5,7 +5,7 @@ import { HomePage } from './pages/HomePage/HomePage';
 import { FormActivity } from './pages/FormActivity/FormActivity';
 import { CountryDetail } from './components/CountryDetail/CountryDetail';
 import { Layout } from './components/Layout/Layout';
-import { ErrorPage } from './pages/Error/ErrorPage';
+//import { ErrorPage } from './pages/Error/ErrorPage';
 import Activities from './components/Activities/Activities';
 
 function App() {    
@@ -20,7 +20,7 @@ function App() {
             <Route index element={<FormActivity />} />
             <Route path='all' element={<Activities />} />
             </Route>
-            <Route path='*' element={<ErrorPage/>} />   
+            <Route path='*' element={<LandingPage/>} />
         </Routes>
     );
 }
