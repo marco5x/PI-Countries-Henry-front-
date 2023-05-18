@@ -63,7 +63,7 @@ function Activities() {
             {showModal ? (createPortal(
                     <div className={style.modal}>
                         <div className={style.mod}>
-                            <button onClick={() => setShowModal(!showModal)} >❌</button>
+                            <button className={style.buttonX} onClick={() => setShowModal(!showModal)} >❌</button>
                             <FormUpdate id={data} mod={showModal} set={setShowModal} />
                         </div>
                     </div>

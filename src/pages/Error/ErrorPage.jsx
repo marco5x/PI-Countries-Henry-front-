@@ -38,7 +38,7 @@ export const ErrorPage = () => {
                 _"*$$$"____________^$$P___<br />
                 ____""______________^"____<br />
                 __________________________<br /></figure>
-            <Link className={""} to="/countries">
+            <Link  style={{display:"flex", border:" 1px solid", borderRadius:"15px", color:"white"}} to="/countries">
                 {" "}GO HOME{" "}
             </Link>
         </div>
