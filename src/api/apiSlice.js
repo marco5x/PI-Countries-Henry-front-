@@ -3,7 +3,7 @@ import { sortAlphabetically} from "../utils/utils"
 
 export const apiSlice = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001" }),
+  baseQuery: fetchBaseQuery({baseUrl: process.env.REACT_APP_URL|| "http://localhost:3001"}),
   tagTypes: ["Countries", "Activities"],
   endpoints: (builder) => ({
     getCountries: builder.query({
